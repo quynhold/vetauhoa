@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="vetauhoa.entity.LichTrinh" table="LichTrinh" schema="dbo" catalog="BanVeTauHoa">
+        <id name="maLichTrinh">
+            <column name="MaLichTrinh" sql-type="nvarchar(10)" length="10"/>
+        </id>
+<!--        <property name="maTau">-->
+<!--            <column name="MaTau" sql-type="nvarchar(5)" length="5"/>-->
+<!--        </property>-->
+<!--        <property name="maGaXuatPhat">-->
+<!--            <column name="MaGaXuatPhat" sql-type="nvarchar(20)" length="20"/>-->
+<!--        </property>-->
+        <property name="thoiGianXuatPhat">
+            <column name="ThoiGianXuatPhat" sql-type="datetime"/>
+        </property>
+<!--        <property name="maGaCuoi">-->
+<!--            <column name="MaGaCuoi" sql-type="nvarchar(20)" length="20"/>-->
+<!--        </property>-->
+        <property name="giaMoCua">
+            <column name="GiaMoCua" sql-type="money"/>
+        </property>
+        <many-to-one name="tauByMaTau" class="vetauhoa.entity.Tau">
+            <column name="MaTau"/>
+        </many-to-one>
+        <many-to-one name="gaByMaGaXuatPhat" class="vetauhoa.entity.Ga">
+            <column name="MaGaXuatPhat"/>
+        </many-to-one>
+        <many-to-one name="gaByMaGaCuoi" class="vetauhoa.entity.Ga">
+            <column name="MaGaCuoi"/>
+        </many-to-one>
+        <set name="phieuDatsByMaLichTrinh" inverse="true">
+            <key>
+                <column name="MaLichTrinh"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.PhieuDat"/>
+        </set>
+        <set name="trangThaiChoDatsByMaLichTrinh" inverse="true">
+            <key>
+                <column name="MaLichTrinh"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.TrangThaiChoDat"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:sqlserver://localhost:61892;database=BanVeTauHoa</property>
+        <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <!--        <property name="current_session_context_class">thread</property>-->
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <mapping resource="ChoDat.hbm.xml"/>
+        <mapping class="vetauhoa.entity.ChoDat"/>
+        <mapping resource="Ga.hbm.xml"/>
+        <mapping class="vetauhoa.entity.Ga"/>
+        <mapping resource="HanhKhach.hbm.xml"/>
+        <mapping class="vetauhoa.entity.HanhKhach"/>
+        <mapping resource="HoaDon.hbm.xml"/>
+        <mapping class="vetauhoa.entity.HoaDon"/>
+        <mapping resource="LichTrinh.hbm.xml"/>
+        <mapping class="vetauhoa.entity.LichTrinh"/>
+        <mapping resource="NhanVien.hbm.xml"/>
+        <mapping class="vetauhoa.entity.NhanVien"/>
+        <mapping resource="PhieuDat.hbm.xml"/>
+        <mapping class="vetauhoa.entity.PhieuDat"/>
+        <mapping class="vetauhoa.entity.TaiKhoan"/>
+        <mapping resource="TaiKhoan.hbm.xml"/>
+        <mapping resource="Tau.hbm.xml"/>
+        <mapping class="vetauhoa.entity.Tau"/>
+        <mapping resource="Toa.hbm.xml"/>
+        <mapping class="vetauhoa.entity.Toa"/>
+        <mapping resource="Ve.hbm.xml"/>
+        <mapping class="vetauhoa.entity.Ve"/>
+        <mapping class="vetauhoa.entity.TrangThaiChoDat"/>
+        <mapping resource="TrangThaiChoDat.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration>

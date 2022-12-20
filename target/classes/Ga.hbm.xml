@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="vetauhoa.entity.Ga" table="Ga" schema="dbo" catalog="BanVeTauHoa">
+        <id name="maGa">
+            <column name="MaGa" sql-type="nvarchar(20)" length="20"/>
+        </id>
+        <property name="tenGa">
+            <column name="TenGa" sql-type="nvarchar(30)" length="30"/>
+        </property>
+        <property name="diaChi">
+            <column name="DiaChi" sql-type="nvarchar(50)" length="50"/>
+        </property>
+        <property name="khoangCach">
+            <column name="KhoangCach" sql-type="int"/>
+        </property>
+        <set name="lichTrinhsByMaGaXuatPhat" inverse="true">
+            <key>
+                <column name="MaGaXuatPhat"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.LichTrinh"/>
+        </set>
+        <set name="lichTrinhsByMaGaCuoi" inverse="true">
+            <key>
+                <column name="MaGaCuoi"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.LichTrinh"/>
+        </set>
+        <set name="phieuDatsByMaGa" inverse="true">
+            <key>
+                <column name="MaGaDen"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.PhieuDat"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="vetauhoa.entity.HanhKhach" table="HanhKhach" schema="dbo" catalog="BanVeTauHoa">
+        <id name="maHanhKhach">
+            <column name="MaHanhKhach" sql-type="nvarchar(12)" length="12"/>
+        </id>
+        <property name="ho">
+            <column name="Ho" sql-type="nvarchar(10)" length="10"/>
+        </property>
+        <property name="ten">
+            <column name="Ten" sql-type="nvarchar(30)" length="30"/>
+        </property>
+        <property name="cccd">
+            <column name="CCCD" sql-type="nvarchar(12)" length="12" not-null="true"/>
+        </property>
+        <property name="ngaySinh">
+            <column name="NgaySinh" sql-type="date" not-null="false"/>
+        </property>
+        <property name="gioiTinh">
+            <column name="GioiTinh" sql-type="nvarchar(4)" length="4" not-null="false"/>
+        </property>
+        <property name="diaChi">
+            <column name="DiaChi" sql-type="nvarchar(50)" length="50" not-null="false"/>
+        </property>
+        <property name="sdt">
+            <column name="Sdt" sql-type="char(10)" length="10"/>
+        </property>
+        <property name="email">
+            <column name="Email" sql-type="varchar(50)" length="50" not-null="false"/>
+        </property>
+<!--        <property name="maTaiKhoan">-->
+<!--            <column name="MaTaiKhoan" sql-type="nvarchar(12)" length="12" not-null="true"/>-->
+<!--        </property>-->
+        <many-to-one name="taiKhoanByMaTaiKhoan" class="vetauhoa.entity.TaiKhoan">
+            <column name="MaTaiKhoan" not-null="false"/>
+        </many-to-one>
+        <set name="phieuDatsByMaHanhKhach" inverse="false">
+            <key>
+                <column name="MaHanhKhach"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.PhieuDat"/>
+        </set>
+    </class>
+</hibernate-mapping>

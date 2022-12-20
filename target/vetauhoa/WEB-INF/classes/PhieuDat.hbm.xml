@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="vetauhoa.entity.PhieuDat" table="PhieuDat" schema="dbo" catalog="BanVeTauHoa">
+        <id name="maPhieuDat">
+            <column name="MaPhieuDat" sql-type="nvarchar(10)" length="10"/>
+        </id>
+<!--        <property name="maHanhKhach">-->
+<!--            <column name="MaHanhKhach" sql-type="nvarchar(12)" length="12"/>-->
+<!--        </property>-->
+<!--        <property name="maChoDat">-->
+<!--            <column name="MaChoDat" sql-type="nvarchar(4)" length="4"/>-->
+<!--        </property>-->
+<!--        <property name="maLichTrinh">-->
+<!--            <column name="MaLichTrinh" sql-type="nvarchar(10)" length="10"/>-->
+<!--        </property>-->
+<!--        <property name="maGaDen">-->
+<!--            <column name="MaGaDen" sql-type="nvarchar(20)" length="20"/>-->
+<!--        </property>-->
+<!--        <property name="maHoaDon">-->
+<!--            <column name="MaHoaDon" sql-type="nvarchar(20)" length="20"/>-->
+<!--        </property>-->
+        <property name="thoiGianDat">
+            <column name="ThoiGianDat" sql-type="datetime"/>
+        </property>
+        <many-to-one name="hanhKhachByMaHanhKhach" class="vetauhoa.entity.HanhKhach">
+            <column name="MaHanhKhach"/>
+        </many-to-one>
+        <many-to-one name="choDatByMaChoDat" class="vetauhoa.entity.ChoDat">
+            <column name="MaChoDat"/>
+        </many-to-one>
+        <many-to-one name="lichTrinhByMaLichTrinh" class="vetauhoa.entity.LichTrinh">
+            <column name="MaLichTrinh"/>
+        </many-to-one>
+        <many-to-one name="gaByMaGaDen" class="vetauhoa.entity.Ga">
+            <column name="MaGaDen"/>
+        </many-to-one>
+        <many-to-one name="hoaDonByMaHoaDon" class="vetauhoa.entity.HoaDon">
+            <column name="MaHoaDon"/>
+        </many-to-one>
+        <set name="vesByMaPhieuDat" inverse="true">
+            <key>
+                <column name="MaPhieuDat"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.Ve"/>
+        </set>
+    </class>
+</hibernate-mapping>

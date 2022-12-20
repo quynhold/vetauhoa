@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="vetauhoa.entity.TaiKhoan" table="TaiKhoan" schema="dbo" catalog="BanVeTauHoa">
+        <id name="maTaiKhoan">
+            <column name="MaTaiKhoan" sql-type="nvarchar(12)" length="12"/>
+        </id>
+        <property name="username">
+            <column name="Username" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="password">
+            <column name="Password" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="trangThai">
+            <column name="TrangThai" sql-type="bit"/>
+        </property>
+        <property name="role">
+            <column name="Role" sql-type="nvarchar(5)"/>
+        </property>
+        <property name="avatar">
+            <column name="Avatar" sql-type="varbinary(MAX)"/>
+        </property>
+        <property name="verifyCode">
+        </property>
+        <set name="hanhKhachesByMaTaiKhoan" inverse="true">
+            <key>
+                <column name="MaTaiKhoan" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.HanhKhach"/>
+        </set>
+        <set name="nhanViensByMaTaiKhoan" inverse="true">
+            <key>
+                <column name="MaTaiKhoan"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.NhanVien"/>
+        </set>
+    </class>
+</hibernate-mapping>

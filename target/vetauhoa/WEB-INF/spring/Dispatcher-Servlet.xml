@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   		http://www.springframework.org/schema/beans/spring-beans.xsd
+	   		http://www.springframework.org/schema/context
+	   		http://www.springframework.org/schema/context/spring-context.xsd
+	   		http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!-- Cấu hình package chứa các controller -->
+    <context:component-scan base-package="vetauhoa.controller"/>
+    <!-- Spring MVC Annotation -->
+    <context:annotation-config />
+    <mvc:annotation-driven/>
+
+    <!-- Cấu hình view -->
+    <bean id="viewResolver"
+          p:prefix="/WEB-INF/views/" p:suffix=".jsp"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5242880"/>
+    </bean>
+<!--    chodat-->
+    <bean id="choDatDao" class="vetauhoa.dao.impl.ChoDatDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="choDatService" class="vetauhoa.service.impl.ChoDatServiceImpl"></bean>
+<!--    ga-->
+    <bean id="gaDao" class="vetauhoa.dao.impl.GaDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="gaService" class="vetauhoa.service.impl.GaServiceImpl"></bean>
+<!--    hanhkhach-->
+    <bean id="hanhKhachDao" class="vetauhoa.dao.impl.HanhKhachDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="hanhKhachService" class="vetauhoa.service.impl.HanhKhachServiceImpl"></bean>
+<!--    hoadon-->
+    <bean id="hoaDonDao" class="vetauhoa.dao.impl.HoaDonDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="hoaDonService" class="vetauhoa.service.impl.HoaDonServiceImpl"></bean>
+<!--    lichtrinh-->
+    <bean id="lichTrinhDao" class="vetauhoa.dao.impl.LichTrinhDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="lichTrinhService" class="vetauhoa.service.impl.LichTrinhServiceImpl"></bean>
+<!--    nhanvien-->
+    <bean id="nhanVienDao" class="vetauhoa.dao.impl.NhanVienDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="nhanVienService" class="vetauhoa.service.impl.NhanVienServiceImpl"></bean>
+<!--    phieudat-->
+    <bean id="phieuDatDao" class="vetauhoa.dao.impl.PhieuDatDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="phieuDatService" class="vetauhoa.service.impl.PhieuDatServiceImpl"></bean>
+<!--    taikhoan-->
+    <bean id="taiKhoanDao" class="vetauhoa.dao.impl.TaiKhoanDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="taiKhoanService" class="vetauhoa.service.impl.TaiKhoanServiceImpl"></bean>
+<!--    tau-->
+    <bean id="tauDao" class="vetauhoa.dao.impl.TauDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="tauService" class="vetauhoa.service.impl.TauServiceImpl"></bean>
+<!--    toa-->
+    <bean id="toaDao" class="vetauhoa.dao.impl.ToaDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="toaService" class="vetauhoa.service.impl.ToaServiceImpl"></bean>
+<!--    ve-->
+    <bean id="veDao" class="vetauhoa.dao.impl.VeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="veService" class="vetauhoa.service.impl.VeServiceImpl"></bean>
+<!--TrangThaiChodat-->
+    <bean id="trangThaiChoDatDao" class="vetauhoa.dao.impl.TrangThaiChoDatDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="trangThaiChoDatService" class="vetauhoa.service.impl.TrangThaiChoDatServiceImpl"></bean>
+
+    <bean id="userDetailService" class="vetauhoa.service.impl.UserDetailServiceImpl"></bean>
+<!--    Email-->
+
+</beans>
+

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="vetauhoa.entity.HoaDon" table="HoaDon" schema="dbo" catalog="BanVeTauHoa" dynamic-insert="true">
+        <id name="maHoaDon">
+            <column name="MaHoaDon" sql-type="nvarchar(20)" length="20"/>
+        </id>
+<!--        <property name="maNhanVien">-->
+<!--            <column name="MaNhanVien" sql-type="nvarchar(12)" length="12"/>-->
+<!--        </property>-->
+        <property name="hinhThucThanhToan" not-null="true">
+            <column name="HinhThucThanhToan" sql-type="nvarchar(20)" length="20"/>
+        </property>
+        <many-to-one name="nhanVienByMaNhanVien" class="vetauhoa.entity.NhanVien">
+            <column name="MaNhanVien"/>
+        </many-to-one>
+        <set name="phieuDatsByMaHoaDon" inverse="true">
+            <key>
+                <column name="MaHoaDon"/>
+            </key>
+            <one-to-many not-found="ignore" class="vetauhoa.entity.PhieuDat"/>
+        </set>
+    </class>
+</hibernate-mapping>
